@@ -30,30 +30,30 @@ Form::Form(QWidget *parent)
 
     textEditLog = new QTextEdit;
 
-    QGridLayout *gridLayoutParameters = new QGridLayout;
-    gridLayoutParameters->addWidget(labelR, 0, 0);
-    gridLayoutParameters->addWidget(labelL, 1, 0);
-    gridLayoutParameters->addWidget(labelC, 2, 0);
-    gridLayoutParameters->addWidget(labelM, 3, 0);
-    gridLayoutParameters->addWidget(labelG0, 4, 0);
-    gridLayoutParameters->addWidget(labelG2, 5, 0);
-    gridLayoutParameters->addWidget(labelU0, 6, 0);
-    gridLayoutParameters->addWidget(labelI0, 7, 0);
-    gridLayoutParameters->addWidget(doubleSpinBoxR, 0, 1);
-    gridLayoutParameters->addWidget(doubleSpinBoxL, 1, 1);
-    gridLayoutParameters->addWidget(doubleSpinBoxC, 2, 1);
-    gridLayoutParameters->addWidget(doubleSpinBoxM, 3, 1);
-    gridLayoutParameters->addWidget(doubleSpinBoxG0, 4, 1);
-    gridLayoutParameters->addWidget(doubleSpinBoxG2, 5, 1);
-    gridLayoutParameters->addWidget(doubleSpinBoxU0, 6, 1);
-    gridLayoutParameters->addWidget(doubleSpinBoxI0, 7, 1);
+    QGridLayout *layoutParameters = new QGridLayout;
+    layoutParameters->addWidget(labelR, 0, 0);
+    layoutParameters->addWidget(labelL, 1, 0);
+    layoutParameters->addWidget(labelC, 2, 0);
+    layoutParameters->addWidget(labelM, 3, 0);
+    layoutParameters->addWidget(labelG0, 4, 0);
+    layoutParameters->addWidget(labelG2, 5, 0);
+    layoutParameters->addWidget(labelU0, 6, 0);
+    layoutParameters->addWidget(labelI0, 7, 0);
+    layoutParameters->addWidget(doubleSpinBoxR, 0, 1);
+    layoutParameters->addWidget(doubleSpinBoxL, 1, 1);
+    layoutParameters->addWidget(doubleSpinBoxC, 2, 1);
+    layoutParameters->addWidget(doubleSpinBoxM, 3, 1);
+    layoutParameters->addWidget(doubleSpinBoxG0, 4, 1);
+    layoutParameters->addWidget(doubleSpinBoxG2, 5, 1);
+    layoutParameters->addWidget(doubleSpinBoxU0, 6, 1);
+    layoutParameters->addWidget(doubleSpinBoxI0, 7, 1);
 
     QHBoxLayout *layoutButtons = new QHBoxLayout;
     layoutButtons->addWidget(pushButtonStart);
     layoutButtons->addWidget(pushButtonStop);
 
     QVBoxLayout *layoutMain = new QVBoxLayout;
-    layoutMain->addLayout(gridLayoutParameters);
+    layoutMain->addLayout(layoutParameters);
     layoutMain->addLayout(layoutButtons);
     layoutMain->addWidget(textEditLog);
 
