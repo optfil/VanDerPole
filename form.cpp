@@ -18,7 +18,9 @@ Form::Form(QWidget *parent)
 
     doubleSpinBoxR = new QDoubleSpinBox;
     doubleSpinBoxL = new QDoubleSpinBox;
+    doubleSpinBoxL->setMinimum(0.01);
     doubleSpinBoxC = new QDoubleSpinBox;
+    doubleSpinBoxC->setMinimum(0.01);
     doubleSpinBoxM = new QDoubleSpinBox;
     doubleSpinBoxM->setMinimum(-100.0);
     doubleSpinBoxG0 = new QDoubleSpinBox;
