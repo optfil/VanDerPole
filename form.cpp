@@ -20,10 +20,15 @@ Form::Form(QWidget *parent)
     doubleSpinBoxL = new QDoubleSpinBox;
     doubleSpinBoxC = new QDoubleSpinBox;
     doubleSpinBoxM = new QDoubleSpinBox;
+    doubleSpinBoxM->setMinimum(-100.0);
     doubleSpinBoxG0 = new QDoubleSpinBox;
+    doubleSpinBoxG0->setMinimum(-100.0);
     doubleSpinBoxG2 = new QDoubleSpinBox;
+    doubleSpinBoxG2->setMinimum(-100.0);
     doubleSpinBoxU0 = new QDoubleSpinBox;
+    doubleSpinBoxU0->setMinimum(-100.0);
     doubleSpinBoxI0 = new QDoubleSpinBox;
+    doubleSpinBoxI0->setMinimum(-100.0);
 
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
