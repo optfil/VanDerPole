@@ -17,6 +17,7 @@ Form::Form(QWidget *parent)
     labelG2 = new QLabel("G2");
     labelU0 = new QLabel("U0");
     labelI0 = new QLabel("I0");
+    labelDt = new QLabel("time step");
 
     doubleSpinBoxR = new QDoubleSpinBox;
     doubleSpinBoxL = new QDoubleSpinBox;
@@ -36,6 +37,11 @@ Form::Form(QWidget *parent)
     doubleSpinBoxU0->setValue(1.0);
     doubleSpinBoxI0 = new QDoubleSpinBox;
     doubleSpinBoxI0->setMinimum(-100.0);
+    doubleSpinBoxDt = new QDoubleSpinBox;
+    doubleSpinBoxDt->setMinimum(1e-6);
+    doubleSpinBoxDt->setSingleStep(1e-3);
+    doubleSpinBoxDt->setValue(1e-2);
+    doubleSpinBoxDt->setDecimals(6);
 
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
@@ -52,6 +58,7 @@ Form::Form(QWidget *parent)
     layoutParameters->addWidget(labelG2, 5, 0);
     layoutParameters->addWidget(labelU0, 6, 0);
     layoutParameters->addWidget(labelI0, 7, 0);
+    layoutParameters->addWidget(labelDt, 8, 0);
     layoutParameters->addWidget(doubleSpinBoxR, 0, 1);
     layoutParameters->addWidget(doubleSpinBoxL, 1, 1);
     layoutParameters->addWidget(doubleSpinBoxC, 2, 1);
@@ -60,6 +67,7 @@ Form::Form(QWidget *parent)
     layoutParameters->addWidget(doubleSpinBoxG2, 5, 1);
     layoutParameters->addWidget(doubleSpinBoxU0, 6, 1);
     layoutParameters->addWidget(doubleSpinBoxI0, 7, 1);
+    layoutParameters->addWidget(doubleSpinBoxDt, 8, 1);
 
     QHBoxLayout *layoutButtons = new QHBoxLayout;
     layoutButtons->addWidget(pushButtonStart);
@@ -91,12 +99,13 @@ void Form::start_calculation()
         {"U0", doubleSpinBoxU0->value()},
         {"I0", doubleSpinBoxI0->value()}
     }};
+    double dt = doubleSpinBoxDt->value();
 
     textEditLog->append(QString::number(sys.t()) + ' ' +
                         QString::number(sys.u()) + ' ' +
                         QString::number(sys.i()));
     for (int iter_num = 0; iter_num < 100; ++iter_num){
-        sys.step(1e-1);
+        sys.step(dt);
         textEditLog->append(QString::number(sys.t()) + ' ' +
                             QString::number(sys.u()) + ' ' +
                             QString::number(sys.i()));
