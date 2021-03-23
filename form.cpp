@@ -39,6 +39,7 @@ Form::Form(QWidget *parent)
     pushButtonStop = new QPushButton("Stop");
 
     textEditLog = new QTextEdit;
+    textEditLog->setReadOnly(true);
 
     QGridLayout *layoutParameters = new QGridLayout;
     layoutParameters->addWidget(labelR, 0, 0);
@@ -68,9 +69,15 @@ Form::Form(QWidget *parent)
     layoutMain->addWidget(textEditLog);
 
     setLayout(layoutMain);
+
+    connect(pushButtonStart, &QPushButton::clicked, this, &Form::start_calculation);
 }
 
 Form::~Form()
 {
 }
 
+void Form::start_calculation()
+{
+    textEditLog->append("Button pressed");
+}

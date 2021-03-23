@@ -16,6 +16,9 @@ class Form : public QWidget
     QPushButton *pushButtonStart, *pushButtonStop;
     QTextEdit *textEditLog;
 
+private slots:
+    void start_calculation();
+
 public:
     Form(QWidget *parent = nullptr);
     ~Form();
