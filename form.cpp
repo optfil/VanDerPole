@@ -92,6 +92,13 @@ void Form::start_calculation()
         {"I0", doubleSpinBoxI0->value()}
     }};
 
-    textEditLog->append("U0 = " + QString::number(sys.u()));
-    textEditLog->append("I0 = " + QString::number(sys.i()));
+    textEditLog->append(QString::number(sys.t()) + ' ' +
+                        QString::number(sys.u()) + ' ' +
+                        QString::number(sys.i()));
+    for (int iter_num = 0; iter_num < 100; ++iter_num){
+        sys.step(1e-1);
+        textEditLog->append(QString::number(sys.t()) + ' ' +
+                            QString::number(sys.u()) + ' ' +
+                            QString::number(sys.i()));
+    }
 }
