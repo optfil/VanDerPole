@@ -20,6 +20,7 @@ void DynSystem::step(double dt)
     double u_new = u_ + dt * i_ / C;
     double i_new = i_ + dt * C * (-u_/L/C - 1.0/C*(R/L-M/L/C*(g0+g2*u_*u_)));
 
+    t_ += dt;
     u_ = u_new;
     i_ = i_new;
 }
