@@ -4,6 +4,8 @@
 #include <QVBoxLayout>
 #include <QGridLayout>
 
+#include "dynsystem.h"
+
 Form::Form(QWidget *parent)
     : QWidget(parent)
 {
@@ -79,5 +81,17 @@ Form::~Form()
 
 void Form::start_calculation()
 {
-    textEditLog->append("Button pressed");
+    DynSystem sys{{
+        {"L", doubleSpinBoxL->value()},
+        {"R", doubleSpinBoxR->value()},
+        {"C", doubleSpinBoxC->value()},
+        {"M", doubleSpinBoxM->value()},
+        {"g0", doubleSpinBoxG0->value()},
+        {"g2", doubleSpinBoxG2->value()},
+        {"U0", doubleSpinBoxU0->value()},
+        {"I0", doubleSpinBoxI0->value()}
+    }};
+
+    textEditLog->append("U0 = " + QString::number(sys.u()));
+    textEditLog->append("I0 = " + QString::number(sys.i()));
 }
