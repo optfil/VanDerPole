@@ -89,6 +89,8 @@ Form::~Form()
 
 void Form::start_calculation()
 {
+    textEditLog->clear();
+
     DynSystem sys{{
         {"L", doubleSpinBoxL->value()},
         {"R", doubleSpinBoxR->value()},
