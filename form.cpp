@@ -38,10 +38,10 @@ Form::Form(QWidget *parent)
     doubleSpinBoxI0 = new QDoubleSpinBox;
     doubleSpinBoxI0->setMinimum(-100.0);
     doubleSpinBoxDt = new QDoubleSpinBox;
-    doubleSpinBoxDt->setMinimum(1e-6);
-    doubleSpinBoxDt->setSingleStep(1e-3);
-    doubleSpinBoxDt->setValue(1e-2);
     doubleSpinBoxDt->setDecimals(6);
+    doubleSpinBoxDt->setMinimum(1e-6);
+    doubleSpinBoxDt->setValue(1e-3);
+    doubleSpinBoxDt->setSingleStep(1e-3);
 
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
@@ -106,7 +106,7 @@ void Form::start_calculation()
     textEditLog->append(QString::number(sys.t()) + ' ' +
                         QString::number(sys.u()) + ' ' +
                         QString::number(sys.i()));
-    for (int iter_num = 0; iter_num < 100; ++iter_num){
+    for (int iter_num = 0; iter_num < 10000; ++iter_num){
         sys.step(dt);
         textEditLog->append(QString::number(sys.t()) + ' ' +
                             QString::number(sys.u()) + ' ' +
