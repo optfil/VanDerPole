@@ -48,6 +48,7 @@ Form::Form(QWidget *parent)
 
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
+    pushButtonStop->setEnabled(false);
 
     textEditLog = new QTextEdit;
     textEditLog->setReadOnly(true);
@@ -114,12 +115,34 @@ void Form::start_calculation()
                         QString::number(sys->u()) + ' ' +
                         QString::number(sys->i()));
 
+    doubleSpinBoxR->setEnabled(false);
+    doubleSpinBoxL->setEnabled(false);
+    doubleSpinBoxC->setEnabled(false);
+    doubleSpinBoxM->setEnabled(false);
+    doubleSpinBoxG0->setEnabled(false);
+    doubleSpinBoxG2->setEnabled(false);
+    doubleSpinBoxU0->setEnabled(false);
+    doubleSpinBoxI0->setEnabled(false);
+    doubleSpinBoxDt->setEnabled(false);
+    pushButtonStop->setEnabled(true);
+    pushButtonStart->setEnabled(false);
     timer->start();
 }
 
 void Form::stop_calculation()
 {
     timer->stop();
+    doubleSpinBoxR->setEnabled(true);
+    doubleSpinBoxL->setEnabled(true);
+    doubleSpinBoxC->setEnabled(true);
+    doubleSpinBoxM->setEnabled(true);
+    doubleSpinBoxG0->setEnabled(true);
+    doubleSpinBoxG2->setEnabled(true);
+    doubleSpinBoxU0->setEnabled(true);
+    doubleSpinBoxI0->setEnabled(true);
+    doubleSpinBoxDt->setEnabled(true);
+    pushButtonStop->setEnabled(false);
+    pushButtonStart->setEnabled(true);
 }
 
 void Form::make_step()
