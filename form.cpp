@@ -7,7 +7,7 @@
 #include "dynsystem.h"
 
 Form::Form(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), sys(nullptr)
 {
     timer = new QTimer;
     timer->setInterval(1000);
@@ -94,7 +94,7 @@ void Form::start_calculation()
 {
     textEditLog->clear();
 
-    DynSystem sys{{
+    sys = new DynSystem{{
         {"L", doubleSpinBoxL->value()},
         {"R", doubleSpinBoxR->value()},
         {"C", doubleSpinBoxC->value()},
@@ -104,11 +104,11 @@ void Form::start_calculation()
         {"U0", doubleSpinBoxU0->value()},
         {"I0", doubleSpinBoxI0->value()}
     }};
-    double dt = doubleSpinBoxDt->value();
+    dt = doubleSpinBoxDt->value();
 
-    textEditLog->append(QString::number(sys.t()) + ' ' +
-                        QString::number(sys.u()) + ' ' +
-                        QString::number(sys.i()));
+    textEditLog->append(QString::number(sys->t()) + ' ' +
+                        QString::number(sys->u()) + ' ' +
+                        QString::number(sys->i()));
 
     timer->start();
     /*
@@ -119,4 +119,12 @@ void Form::start_calculation()
                             QString::number(sys.i()));
     }
     */
+}
+
+void Form::make_step()
+{
+    sys->step(dt);
+    textEditLog->append(QString::number(sys->t()) + ' ' +
+                        QString::number(sys->u()) + ' ' +
+                        QString::number(sys->i()));
 }

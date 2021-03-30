@@ -8,6 +8,8 @@
 #include <QTextEdit>
 #include <QTimer>
 
+#include "dynsystem.h"
+
 class Form : public QWidget
 {
     Q_OBJECT
@@ -19,8 +21,12 @@ class Form : public QWidget
 
     QTimer *timer;
 
+    DynSystem *sys;
+    double dt;
+
 private slots:
     void start_calculation();
+    void make_step();
 
 public:
     Form(QWidget *parent = nullptr);
