@@ -6,6 +6,7 @@
 #include <QDoubleSpinBox>
 #include <QPushButton>
 #include <QTextEdit>
+#include <QTimer>
 
 class Form : public QWidget
 {
@@ -15,6 +16,8 @@ class Form : public QWidget
     QDoubleSpinBox *doubleSpinBoxR, *doubleSpinBoxL, *doubleSpinBoxC, *doubleSpinBoxM, *doubleSpinBoxG0, *doubleSpinBoxG2, *doubleSpinBoxU0, *doubleSpinBoxI0, *doubleSpinBoxDt;
     QPushButton *pushButtonStart, *pushButtonStop;
     QTextEdit *textEditLog;
+
+    QTimer *timer;
 
 private slots:
     void start_calculation();
