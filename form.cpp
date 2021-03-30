@@ -84,6 +84,7 @@ Form::Form(QWidget *parent)
     setLayout(layoutMain);
 
     connect(pushButtonStart, &QPushButton::clicked, this, &Form::start_calculation);
+    connect(pushButtonStop, &QPushButton::clicked, this, &Form::stop_calculation);
     connect(timer, &QTimer::timeout, this, &Form::make_step);
 }
 
@@ -95,6 +96,7 @@ Form::~Form()
 void Form::start_calculation()
 {
     textEditLog->clear();
+    delete sys;
 
     sys = new DynSystem{{
         {"L", doubleSpinBoxL->value()},
@@ -113,6 +115,11 @@ void Form::start_calculation()
                         QString::number(sys->i()));
 
     timer->start();
+}
+
+void Form::stop_calculation()
+{
+    timer->stop();
 }
 
 void Form::make_step()

@@ -26,6 +26,7 @@ class Form : public QWidget
 
 private slots:
     void start_calculation();
+    void stop_calculation();
     void make_step();
 
 public:
