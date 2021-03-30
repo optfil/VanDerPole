@@ -10,7 +10,7 @@ Form::Form(QWidget *parent)
     : QWidget(parent), sys(nullptr)
 {
     timer = new QTimer(this);
-    timer->setInterval(1000);
+    timer->setInterval(0);
 
     labelR = new QLabel("R");
     labelL = new QLabel("L");
@@ -147,7 +147,8 @@ void Form::stop_calculation()
 
 void Form::make_step()
 {
-    sys->step(dt);
+    for (int i = 0; i < 10; ++i)
+        sys->step(dt);
     textEditLog->append(QString::number(sys->t()) + ' ' +
                         QString::number(sys->u()) + ' ' +
                         QString::number(sys->i()));
