@@ -9,7 +9,7 @@
 Form::Form(QWidget *parent)
     : QWidget(parent), sys(nullptr)
 {
-    timer = new QTimer;
+    timer = new QTimer(this);
     timer->setInterval(1000);
 
     labelR = new QLabel("R");
@@ -84,10 +84,12 @@ Form::Form(QWidget *parent)
     setLayout(layoutMain);
 
     connect(pushButtonStart, &QPushButton::clicked, this, &Form::start_calculation);
+    connect(timer, &QTimer::timeout, this, &Form::make_step);
 }
 
 Form::~Form()
 {
+    delete sys;
 }
 
 void Form::start_calculation()
@@ -111,14 +113,6 @@ void Form::start_calculation()
                         QString::number(sys->i()));
 
     timer->start();
-    /*
-    for (int iter_num = 0; iter_num < 10000; ++iter_num){
-        sys.step(dt);
-        textEditLog->append(QString::number(sys.t()) + ' ' +
-                            QString::number(sys.u()) + ' ' +
-                            QString::number(sys.i()));
-    }
-    */
 }
 
 void Form::make_step()
