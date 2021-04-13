@@ -10,8 +10,11 @@ Form::Form(QWidget *parent)
     : QWidget(parent), sys(nullptr)
 {
     curveTU = new QwtPlotCurve;
+    curveTU->setPen(Qt::red, 2.0, Qt::SolidLine);
     curveTI = new QwtPlotCurve;
+    curveTI->setPen(Qt::green, 2.0);
     curveUI = new QwtPlotCurve;
+    curveUI->setPen(Qt::blue, 2.0);
 
     timer = new QTimer(this);
     timer->setInterval(0);
