@@ -62,9 +62,17 @@ Form::Form(QWidget *parent)
 
     plotTime = new QwtPlot;
     plotPhase = new QwtPlot;
+    plotTime->enableAxis(QwtPlot::yRight);
     curveTU->attach(plotTime);
     curveTI->attach(plotTime);
+    curveTI->setAxes(QwtPlot::xBottom, QwtPlot::yRight);
     curveUI->attach(plotPhase);
+    plotTime->setAxisTitle(QwtPlot::xBottom, "time");
+    plotTime->setAxisTitle(QwtPlot::yLeft, "U");
+    plotTime->setAxisTitle(QwtPlot::yRight, "I");
+    plotPhase->setAxisTitle(QwtPlot::xBottom, "U");
+    plotPhase->setAxisTitle(QwtPlot::yLeft, "I");
+
 
     QGridLayout *layoutParameters = new QGridLayout;
     layoutParameters->addWidget(labelR, 0, 0);
