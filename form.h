@@ -8,6 +8,8 @@
 #include <QTextEdit>
 #include <QTimer>
 
+#include <QVector>
+
 #include "dynsystem.h"
 
 class Form : public QWidget
@@ -23,6 +25,8 @@ class Form : public QWidget
 
     DynSystem *sys;
     double dt;
+
+    QVector<double> tt, uu, ii;
 
 private slots:
     void start_calculation();

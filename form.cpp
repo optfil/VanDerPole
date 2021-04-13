@@ -96,6 +96,9 @@ Form::~Form()
 
 void Form::start_calculation()
 {
+    tt.clear();
+    uu.clear();
+    ii.clear();
     textEditLog->clear();
     delete sys;
 
@@ -110,6 +113,9 @@ void Form::start_calculation()
         {"I0", doubleSpinBoxI0->value()}
     }};
     dt = doubleSpinBoxDt->value();
+    tt.append(sys->t());
+    uu.append(sys->u());
+    ii.append(sys->i());
 
     textEditLog->append(QString::number(sys->t()) + ' ' +
                         QString::number(sys->u()) + ' ' +
@@ -149,6 +155,9 @@ void Form::make_step()
 {
     for (int i = 0; i < 10; ++i)
         sys->step(dt);
+    tt.append(sys->t());
+    uu.append(sys->u());
+    ii.append(sys->i());
     textEditLog->append(QString::number(sys->t()) + ' ' +
                         QString::number(sys->u()) + ' ' +
                         QString::number(sys->i()));
