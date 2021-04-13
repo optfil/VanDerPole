@@ -10,6 +10,9 @@
 
 #include <QVector>
 
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
+
 #include "dynsystem.h"
 
 class Form : public QWidget
@@ -20,6 +23,10 @@ class Form : public QWidget
     QDoubleSpinBox *doubleSpinBoxR, *doubleSpinBoxL, *doubleSpinBoxC, *doubleSpinBoxM, *doubleSpinBoxG0, *doubleSpinBoxG2, *doubleSpinBoxU0, *doubleSpinBoxI0, *doubleSpinBoxDt;
     QPushButton *pushButtonStart, *pushButtonStop;
     QTextEdit *textEditLog;
+
+    QwtPlot *plotTime, *plotPhase;
+
+    QwtPlotCurve *curveTU, *curveTI, *curveUI;
 
     QTimer *timer;
 

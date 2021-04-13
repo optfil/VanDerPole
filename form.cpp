@@ -9,6 +9,10 @@
 Form::Form(QWidget *parent)
     : QWidget(parent), sys(nullptr)
 {
+    curveTU = new QwtPlotCurve;
+    curveTI = new QwtPlotCurve;
+    curveUI = new QwtPlotCurve;
+
     timer = new QTimer(this);
     timer->setInterval(0);
 
@@ -53,6 +57,12 @@ Form::Form(QWidget *parent)
     textEditLog = new QTextEdit;
     textEditLog->setReadOnly(true);
 
+    plotTime = new QwtPlot;
+    plotPhase = new QwtPlot;
+    curveTU->attach(plotTime);
+    curveTI->attach(plotTime);
+    curveUI->attach(plotPhase);
+
     QGridLayout *layoutParameters = new QGridLayout;
     layoutParameters->addWidget(labelR, 0, 0);
     layoutParameters->addWidget(labelL, 1, 0);
@@ -77,10 +87,18 @@ Form::Form(QWidget *parent)
     layoutButtons->addWidget(pushButtonStart);
     layoutButtons->addWidget(pushButtonStop);
 
-    QVBoxLayout *layoutMain = new QVBoxLayout;
-    layoutMain->addLayout(layoutParameters);
-    layoutMain->addLayout(layoutButtons);
-    layoutMain->addWidget(textEditLog);
+    QVBoxLayout *layoutUI = new QVBoxLayout;
+    layoutUI->addLayout(layoutParameters);
+    layoutUI->addLayout(layoutButtons);
+    layoutUI->addWidget(textEditLog);
+
+    QVBoxLayout *layoutPlot = new QVBoxLayout;
+    layoutPlot->addWidget(plotTime);
+    layoutPlot->addWidget(plotPhase);
+
+    QHBoxLayout *layoutMain = new QHBoxLayout;
+    layoutMain->addLayout(layoutUI);
+    layoutMain->addLayout(layoutPlot);
 
     setLayout(layoutMain);
 
@@ -116,6 +134,11 @@ void Form::start_calculation()
     tt.append(sys->t());
     uu.append(sys->u());
     ii.append(sys->i());
+    curveTU->setSamples(tt, uu);
+    curveTI->setSamples(tt, ii);
+    curveUI->setSamples(uu, ii);
+    plotTime->replot();
+    plotPhase->replot();
 
     textEditLog->append(QString::number(sys->t()) + ' ' +
                         QString::number(sys->u()) + ' ' +
@@ -158,6 +181,11 @@ void Form::make_step()
     tt.append(sys->t());
     uu.append(sys->u());
     ii.append(sys->i());
+    curveTU->setSamples(tt, uu);
+    curveTI->setSamples(tt, ii);
+    curveUI->setSamples(uu, ii);
+    plotTime->replot();
+    plotPhase->replot();
     textEditLog->append(QString::number(sys->t()) + ' ' +
                         QString::number(sys->u()) + ' ' +
                         QString::number(sys->i()));
