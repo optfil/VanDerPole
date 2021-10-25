@@ -28,6 +28,7 @@ Form::Form(QWidget *parent)
     doubleSpinBoxC->setValue(1.0);
     doubleSpinBoxU0->setValue(1.0);
     doubleSpinBoxM->setMinimum(-99.99);
+    textEditLog->setReadOnly(true);
 
     QGridLayout *layoutParameters = new QGridLayout;
     layoutParameters->addWidget(labelL, 0, 0);
