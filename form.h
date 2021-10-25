@@ -15,6 +15,10 @@ public:
     Form(QWidget *parent = nullptr);
     ~Form();
 
+public slots:
+    void startCalculation();
+    void stopCalculation();
+
 private:
     QLabel *labelL,
            *labelR,

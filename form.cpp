@@ -58,9 +58,21 @@ Form::Form(QWidget *parent)
     layoutMain->addWidget(textEditLog);
 
     this->setLayout(layoutMain);
+
+    connect(pushButtonStart, &QPushButton::clicked, this, &Form::startCalculation);
+    connect(pushButtonStop, &QPushButton::clicked, this, &Form::stopCalculation);
 }
 
 Form::~Form()
 {
 }
 
+void Form::startCalculation()
+{
+    textEditLog->append("Hello!");
+}
+
+void Form::stopCalculation()
+{
+    textEditLog->clear();
+}
