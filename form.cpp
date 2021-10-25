@@ -1,4 +1,5 @@
 #include "form.h"
+#include <QLayout>
 
 Form::Form(QWidget *parent)
     : QWidget(parent)
@@ -22,6 +23,35 @@ Form::Form(QWidget *parent)
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
     textEditLog = new QTextEdit;
+
+    QGridLayout *layoutParameters = new QGridLayout;
+    layoutParameters->addWidget(labelL, 0, 0);
+    layoutParameters->addWidget(labelR, 1, 0);
+    layoutParameters->addWidget(labelC, 2, 0);
+    layoutParameters->addWidget(labelU0, 3, 0);
+    layoutParameters->addWidget(doubleSpinBoxL, 0, 1);
+    layoutParameters->addWidget(doubleSpinBoxR, 1, 1);
+    layoutParameters->addWidget(doubleSpinBoxC, 2, 1);
+    layoutParameters->addWidget(doubleSpinBoxU0, 3, 1);
+    layoutParameters->addWidget(labelM, 0, 2);
+    layoutParameters->addWidget(labelS0, 1, 2);
+    layoutParameters->addWidget(labelS2, 2, 2);
+    layoutParameters->addWidget(labelI0, 3, 2);
+    layoutParameters->addWidget(doubleSpinBoxM, 0, 3);
+    layoutParameters->addWidget(doubleSpinBoxS0, 1, 3);
+    layoutParameters->addWidget(doubleSpinBoxS2, 2, 3);
+    layoutParameters->addWidget(doubleSpinBoxI0, 3, 3);
+
+    QHBoxLayout *layoutButtons = new QHBoxLayout;
+    layoutButtons->addWidget(pushButtonStart);
+    layoutButtons->addWidget(pushButtonStop);
+
+    QVBoxLayout *layoutMain = new QVBoxLayout;
+    layoutMain->addLayout(layoutParameters);
+    layoutMain->addLayout(layoutButtons);
+    layoutMain->addWidget(textEditLog);
+
+    this->setLayout(layoutMain);
 }
 
 Form::~Form()
