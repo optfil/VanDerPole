@@ -24,6 +24,11 @@ Form::Form(QWidget *parent)
     pushButtonStop = new QPushButton("Stop");
     textEditLog = new QTextEdit;
 
+    doubleSpinBoxL->setValue(1.0);
+    doubleSpinBoxC->setValue(1.0);
+    doubleSpinBoxU0->setValue(1.0);
+    doubleSpinBoxM->setMinimum(-99.99);
+
     QGridLayout *layoutParameters = new QGridLayout;
     layoutParameters->addWidget(labelL, 0, 0);
     layoutParameters->addWidget(labelR, 1, 0);
