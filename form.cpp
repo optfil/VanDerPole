@@ -2,7 +2,7 @@
 #include <QLayout>
 
 Form::Form(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), sys_(nullptr)
 {
     labelL = new QLabel("L");
     labelR = new QLabel("R");
@@ -69,7 +69,17 @@ Form::~Form()
 
 void Form::startCalculation()
 {
-    textEditLog->append("Hello!");
+    std::map<std::string, double> params{
+        {"L", doubleSpinBoxL->value()},
+        {"C", doubleSpinBoxC->value()},
+        {"R", doubleSpinBoxR->value()},
+        {"M", doubleSpinBoxM->value()},
+        {"S0", doubleSpinBoxS0->value()},
+        {"S2", doubleSpinBoxS2->value()},
+        {"x0", doubleSpinBoxU0->value()},
+        {"y0", doubleSpinBoxI0->value()}
+    };
+    sys_ = new System(params);
 }
 
 void Form::stopCalculation()

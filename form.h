@@ -7,6 +7,8 @@
 #include <QPushButton>
 #include <QTextEdit>
 
+#include "system.h"
+
 class Form : public QWidget
 {
     Q_OBJECT
@@ -20,6 +22,8 @@ public slots:
     void stopCalculation();
 
 private:
+    System *sys_;
+
     QLabel *labelL,
            *labelR,
            *labelC,
