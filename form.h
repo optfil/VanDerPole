@@ -6,6 +6,7 @@
 #include <QDoubleSpinBox>
 #include <QPushButton>
 #include <QTextEdit>
+#include <QTimer>
 
 #include "system.h"
 
@@ -20,6 +21,7 @@ public:
 public slots:
     void startCalculation();
     void stopCalculation();
+    void makeStep();
 
 private:
     System *sys_;
@@ -43,5 +45,7 @@ private:
     QPushButton *pushButtonStart,
                 *pushButtonStop;
     QTextEdit *textEditLog;
+
+    QTimer *timer;
 };
 #endif // FORM_H

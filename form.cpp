@@ -4,6 +4,9 @@
 Form::Form(QWidget *parent)
     : QWidget(parent), sys_(nullptr)
 {
+    timer = new QTimer;
+    timer->setInterval(10);
+
     labelL = new QLabel("L");
     labelR = new QLabel("R");
     labelC = new QLabel("C");
@@ -61,6 +64,7 @@ Form::Form(QWidget *parent)
 
     connect(pushButtonStart, &QPushButton::clicked, this, &Form::startCalculation);
     connect(pushButtonStop, &QPushButton::clicked, this, &Form::stopCalculation);
+    connect(timer, &QTimer::timeout, this, &Form::makeStep);
 }
 
 Form::~Form()
@@ -69,6 +73,7 @@ Form::~Form()
 
 void Form::startCalculation()
 {
+    textEditLog->clear();
     std::map<std::string, double> params{
         {"L", doubleSpinBoxL->value()},
         {"C", doubleSpinBoxC->value()},
@@ -80,9 +85,23 @@ void Form::startCalculation()
         {"y0", doubleSpinBoxI0->value()}
     };
     sys_ = new System(params);
+
+    textEditLog->append(QString::number(sys_->t()) + ' '
+                        + QString::number(sys_->x()) + ' '
+                        + QString::number(sys_->y()));
+    timer->start();
 }
 
 void Form::stopCalculation()
 {
-    textEditLog->clear();
+    timer->stop();
+}
+
+void Form::makeStep()
+{
+    for (int i = 0; i < 10; ++i)
+        sys_->make_step(0.01);
+    textEditLog->append(QString::number(sys_->t()) + ' '
+                        + QString::number(sys_->x()) + ' '
+                        + QString::number(sys_->y()));
 }
