@@ -37,7 +37,7 @@ public:
 	
 private:
 	double L_, C_, R_, M_, S0_, S2_;
-	double t_, x_, y_;
+    double x_, y_, t_;
 };
 
 #endif  // SYSTEM_H
