@@ -10,10 +10,12 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    form.cpp
+    form.cpp \
+    system.cpp
 
 HEADERS += \
-    form.h
+    form.h \
+    system.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
