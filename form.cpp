@@ -84,7 +84,7 @@ void Form::startCalculation()
         {"x0", doubleSpinBoxU0->value()},
         {"y0", doubleSpinBoxI0->value()}
     };
-    sys_ = new System(params);
+    sys_ = std::make_unique<System>(params);
 
     textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '

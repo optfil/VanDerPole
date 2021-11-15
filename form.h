@@ -1,6 +1,8 @@
 #ifndef FORM_H
 #define FORM_H
 
+#include <memory>
+
 #include <QWidget>
 #include <QLabel>
 #include <QDoubleSpinBox>
@@ -24,7 +26,7 @@ public slots:
     void makeStep();
 
 private:
-    System *sys_;
+    std::unique_ptr<System> sys_;
 
     QLabel *labelL,
            *labelR,
