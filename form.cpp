@@ -26,6 +26,7 @@ Form::Form(QWidget *parent)
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
     textEditLog = new QTextEdit;
+    plotTime = new QwtPlot;
 
     doubleSpinBoxL->setValue(1.0);
     doubleSpinBoxC->setValue(1.0);
@@ -55,10 +56,14 @@ Form::Form(QWidget *parent)
     layoutButtons->addWidget(pushButtonStart);
     layoutButtons->addWidget(pushButtonStop);
 
-    QVBoxLayout *layoutMain = new QVBoxLayout;
-    layoutMain->addLayout(layoutParameters);
-    layoutMain->addLayout(layoutButtons);
-    layoutMain->addWidget(textEditLog);
+    QVBoxLayout *layoutLeft = new QVBoxLayout;
+    layoutLeft->addLayout(layoutParameters);
+    layoutLeft->addLayout(layoutButtons);
+    layoutLeft->addWidget(textEditLog);
+
+    QHBoxLayout *layoutMain = new QHBoxLayout;
+    layoutMain->addLayout(layoutLeft);
+    layoutMain->addWidget(plotTime);
 
     this->setLayout(layoutMain);
 

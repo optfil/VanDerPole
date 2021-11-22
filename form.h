@@ -10,6 +10,8 @@
 #include <QTextEdit>
 #include <QTimer>
 
+#include <qwt_plot.h>
+
 #include "system.h"
 
 class Form : public QWidget
@@ -47,6 +49,8 @@ private:
     QPushButton *pushButtonStart,
                 *pushButtonStop;
     QTextEdit *textEditLog;
+
+    QwtPlot *plotTime;
 
     QTimer *timer;
 };
