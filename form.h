@@ -11,6 +11,7 @@
 #include <QTimer>
 
 #include <qwt_plot.h>
+#include <qwt_plot_curve.h>
 
 #include "system.h"
 
@@ -52,6 +53,7 @@ private:
     QTextEdit *textEditLog;
 
     QwtPlot *plotTime;
+    QwtPlotCurve *curveTU;
 
     QTimer *timer;
 };
