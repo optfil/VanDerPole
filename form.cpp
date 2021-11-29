@@ -33,6 +33,8 @@ Form::Form(QWidget *parent)
     plotTime->setAxisTitle(QwtAxis::YRight, "I");
     curveTU = new QwtPlotCurve;
     curveTI = new QwtPlotCurve;
+    curveTU->setPen(QColor("red"), 3.0);
+    curveTI->setPen(QColor("blue"), 3.0);
     curveTU->setAxes(QwtAxis::XBottom, QwtAxis::YLeft);
     curveTI->setAxes(QwtAxis::XBottom, QwtAxis::YRight);
     curveTU->attach(plotTime);
