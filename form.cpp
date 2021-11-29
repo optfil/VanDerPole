@@ -78,6 +78,9 @@ Form::~Form()
 
 void Form::startCalculation()
 {
+    tt_.clear();
+    uu_.clear();
+    ii_.clear();
     textEditLog->clear();
     std::map<std::string, double> params{
         {"L", doubleSpinBoxL->value()},
@@ -90,6 +93,9 @@ void Form::startCalculation()
         {"y0", doubleSpinBoxI0->value()}
     };
     sys_ = std::make_unique<System>(params);
+    tt_.append(sys_->t());
+    uu_.append(sys_->x());
+    ii_.append(sys_->y());
 
     textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '
@@ -106,6 +112,9 @@ void Form::makeStep()
 {
     for (int i = 0; i < 10; ++i)
         sys_->make_step(0.01);
+    tt_.append(sys_->t());
+    uu_.append(sys_->x());
+    ii_.append(sys_->y());
     textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '
                         + QString::number(sys_->y()));

@@ -29,6 +29,7 @@ public slots:
 
 private:
     std::unique_ptr<System> sys_;
+    QVector<double> tt_, uu_, ii_;
 
     QLabel *labelL,
            *labelR,
