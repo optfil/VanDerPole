@@ -1,6 +1,8 @@
 #include "form.h"
 #include <QLayout>
 
+#include <qwt_legend.h>
+
 Form::Form(QWidget *parent)
     : QWidget(parent), sys_(nullptr)
 {
@@ -39,6 +41,10 @@ Form::Form(QWidget *parent)
     curveTI->setAxes(QwtAxis::XBottom, QwtAxis::YRight);
     curveTU->attach(plotTime);
     curveTI->attach(plotTime);
+    curveTU->setTitle("U");
+    curveTI->setTitle("I");
+    QwtLegend *legend = new QwtLegend;
+    plotTime->insertLegend(legend, QwtPlot::BottomLegend);
 
     doubleSpinBoxL->setValue(1.0);
     doubleSpinBoxC->setValue(1.0);
