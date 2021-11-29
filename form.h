@@ -52,8 +52,8 @@ private:
                 *pushButtonStop;
     QTextEdit *textEditLog;
 
-    QwtPlot *plotTime;
-    QwtPlotCurve *curveTU, *curveTI;
+    QwtPlot *plotTime, *plotPhase;
+    QwtPlotCurve *curveTU, *curveTI, *curveUI;
 
     QTimer *timer;
 };

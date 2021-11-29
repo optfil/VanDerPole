@@ -28,6 +28,7 @@ Form::Form(QWidget *parent)
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
     textEditLog = new QTextEdit;
+
     plotTime = new QwtPlot;
     plotTime->setAxisVisible(QwtAxis::YRight);
     plotTime->setAxisTitle(QwtAxis::XBottom, "Time");
@@ -45,6 +46,11 @@ Form::Form(QWidget *parent)
     curveTI->setTitle("I");
     QwtLegend *legend = new QwtLegend;
     plotTime->insertLegend(legend, QwtPlot::BottomLegend);
+
+    plotPhase = new QwtPlot;
+    curveUI = new QwtPlotCurve;
+    curveUI->setPen(QColor("green"), 3.0);
+    curveUI->attach(plotPhase);
 
     doubleSpinBoxL->setValue(1.0);
     doubleSpinBoxC->setValue(1.0);
@@ -79,9 +85,13 @@ Form::Form(QWidget *parent)
     layoutLeft->addLayout(layoutButtons);
     layoutLeft->addWidget(textEditLog);
 
+    QVBoxLayout *layoutPlots = new QVBoxLayout;
+    layoutPlots->addWidget(plotTime);
+    layoutPlots->addWidget(plotPhase);
+
     QHBoxLayout *layoutMain = new QHBoxLayout;
     layoutMain->addLayout(layoutLeft);
-    layoutMain->addWidget(plotTime);
+    layoutMain->addLayout(layoutPlots);
 
     this->setLayout(layoutMain);
 
@@ -116,7 +126,9 @@ void Form::startCalculation()
     ii_.append(sys_->y());
     curveTU->setSamples(tt_, uu_);
     curveTI->setSamples(tt_, ii_);
+    curveUI->setSamples(uu_, ii_);
     plotTime->replot();
+    plotPhase->replot();
 
     textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '
@@ -138,7 +150,9 @@ void Form::makeStep()
     ii_.append(sys_->y());
     curveTU->setSamples(tt_, uu_);
     curveTI->setSamples(tt_, ii_);
+    curveUI->setSamples(uu_, ii_);
     plotTime->replot();
+    plotPhase->replot();
     textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '
                         + QString::number(sys_->y()));
