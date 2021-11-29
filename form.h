@@ -53,7 +53,7 @@ private:
     QTextEdit *textEditLog;
 
     QwtPlot *plotTime;
-    QwtPlotCurve *curveTU;
+    QwtPlotCurve *curveTU, *curveTI;
 
     QTimer *timer;
 };

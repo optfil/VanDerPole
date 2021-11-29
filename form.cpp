@@ -27,8 +27,16 @@ Form::Form(QWidget *parent)
     pushButtonStop = new QPushButton("Stop");
     textEditLog = new QTextEdit;
     plotTime = new QwtPlot;
+    plotTime->setAxisVisible(QwtAxis::YRight);
+    plotTime->setAxisTitle(QwtAxis::XBottom, "Time");
+    plotTime->setAxisTitle(QwtAxis::YLeft, "U");
+    plotTime->setAxisTitle(QwtAxis::YRight, "I");
     curveTU = new QwtPlotCurve;
+    curveTI = new QwtPlotCurve;
+    curveTU->setAxes(QwtAxis::XBottom, QwtAxis::YLeft);
+    curveTI->setAxes(QwtAxis::XBottom, QwtAxis::YRight);
     curveTU->attach(plotTime);
+    curveTI->attach(plotTime);
 
     doubleSpinBoxL->setValue(1.0);
     doubleSpinBoxC->setValue(1.0);
@@ -99,6 +107,7 @@ void Form::startCalculation()
     uu_.append(sys_->x());
     ii_.append(sys_->y());
     curveTU->setSamples(tt_, uu_);
+    curveTI->setSamples(tt_, ii_);
     plotTime->replot();
 
     textEditLog->append(QString::number(sys_->t()) + ' '
@@ -120,6 +129,7 @@ void Form::makeStep()
     uu_.append(sys_->x());
     ii_.append(sys_->y());
     curveTU->setSamples(tt_, uu_);
+    curveTI->setSamples(tt_, ii_);
     plotTime->replot();
     textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '
