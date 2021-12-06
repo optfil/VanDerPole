@@ -152,9 +152,6 @@ void Form::startCalculation()
     plotTime->replot();
     plotPhase->replot();
 
-    /*textEditLog->append(QString::number(sys_->t()) + ' '
-                        + QString::number(sys_->x()) + ' '
-                        + QString::number(sys_->y()));*/
     timer->start();
 }
 
@@ -191,7 +188,4 @@ void Form::makeStep()
     curveUI->setSamples(uu_, ii_);
     plotTime->replot();
     plotPhase->replot();
-    /*textEditLog->append(QString::number(sys_->t()) + ' '
-                        + QString::number(sys_->x()) + ' '
-                        + QString::number(sys_->y()));*/
 }
