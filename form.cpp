@@ -27,7 +27,6 @@ Form::Form(QWidget *parent)
     doubleSpinBoxI0 = new QDoubleSpinBox;
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
-    textEditLog = new QTextEdit;
 
     plotTime = new QwtPlot;
     plotTime->setAxisVisible(QwtAxis::YRight);
@@ -56,7 +55,6 @@ Form::Form(QWidget *parent)
     doubleSpinBoxC->setValue(1.0);
     doubleSpinBoxU0->setValue(1.0);
     doubleSpinBoxM->setMinimum(-99.99);
-    textEditLog->setReadOnly(true);
 
     QGridLayout *layoutParameters = new QGridLayout;
     layoutParameters->addWidget(labelL, 0, 0);
@@ -83,7 +81,6 @@ Form::Form(QWidget *parent)
     QVBoxLayout *layoutLeft = new QVBoxLayout;
     layoutLeft->addLayout(layoutParameters);
     layoutLeft->addLayout(layoutButtons);
-    layoutLeft->addWidget(textEditLog);
 
     QVBoxLayout *layoutPlots = new QVBoxLayout;
     layoutPlots->addWidget(plotTime);
@@ -109,7 +106,6 @@ void Form::startCalculation()
     tt_.clear();
     uu_.clear();
     ii_.clear();
-    textEditLog->clear();
     std::map<std::string, double> params{
         {"L", doubleSpinBoxL->value()},
         {"C", doubleSpinBoxC->value()},
@@ -130,9 +126,9 @@ void Form::startCalculation()
     plotTime->replot();
     plotPhase->replot();
 
-    textEditLog->append(QString::number(sys_->t()) + ' '
+    /*textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '
-                        + QString::number(sys_->y()));
+                        + QString::number(sys_->y()));*/
     timer->start();
 }
 
@@ -153,7 +149,7 @@ void Form::makeStep()
     curveUI->setSamples(uu_, ii_);
     plotTime->replot();
     plotPhase->replot();
-    textEditLog->append(QString::number(sys_->t()) + ' '
+    /*textEditLog->append(QString::number(sys_->t()) + ' '
                         + QString::number(sys_->x()) + ' '
-                        + QString::number(sys_->y()));
+                        + QString::number(sys_->y()));*/
 }

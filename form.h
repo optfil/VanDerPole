@@ -7,7 +7,6 @@
 #include <QLabel>
 #include <QDoubleSpinBox>
 #include <QPushButton>
-#include <QTextEdit>
 #include <QTimer>
 
 #include <qwt_plot.h>
@@ -50,7 +49,6 @@ private:
                    *doubleSpinBoxI0;
     QPushButton *pushButtonStart,
                 *pushButtonStop;
-    QTextEdit *textEditLog;
 
     QwtPlot *plotTime, *plotPhase;
     QwtPlotCurve *curveTU, *curveTI, *curveUI;
