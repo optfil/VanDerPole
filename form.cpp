@@ -1,5 +1,7 @@
 #include "form.h"
+#include <fstream>
 #include <QLayout>
+#include <QFileDialog>
 
 #include <qwt_legend.h>
 #include <qwt_plot_panner.h>
@@ -29,6 +31,7 @@ Form::Form(QWidget *parent)
     doubleSpinBoxI0 = new QDoubleSpinBox;
     pushButtonStart = new QPushButton("Start");
     pushButtonStop = new QPushButton("Stop");
+    pushButtonStop->setEnabled(false);
 
     plotTime = new QwtPlot;
     plotTime->setAxisVisible(QwtAxis::YRight);
@@ -128,6 +131,17 @@ void Form::startCalculation()
         {"x0", doubleSpinBoxU0->value()},
         {"y0", doubleSpinBoxI0->value()}
     };
+    doubleSpinBoxL->setEnabled(false);
+    doubleSpinBoxC->setEnabled(false);
+    doubleSpinBoxR->setEnabled(false);
+    doubleSpinBoxM->setEnabled(false);
+    doubleSpinBoxS0->setEnabled(false);
+    doubleSpinBoxS2->setEnabled(false);
+    doubleSpinBoxU0->setEnabled(false);
+    doubleSpinBoxI0->setEnabled(false);
+    pushButtonStart->setEnabled(false);
+    pushButtonStop->setEnabled(true);
+
     sys_ = std::make_unique<System>(params);
     tt_.append(sys_->t());
     uu_.append(sys_->x());
@@ -147,6 +161,22 @@ void Form::startCalculation()
 void Form::stopCalculation()
 {
     timer->stop();
+
+    QString file_name = QFileDialog::getSaveFileName(this, "Save data", "tui.txt");
+    std::ofstream out_file(file_name.toStdString());
+    for (int i = 0; i < tt_.size(); ++i)
+        out_file << tt_[i] << ' ' << uu_[i] << ' ' << ii_[i] << '\n';
+
+    doubleSpinBoxL->setEnabled(true);
+    doubleSpinBoxC->setEnabled(true);
+    doubleSpinBoxR->setEnabled(true);
+    doubleSpinBoxM->setEnabled(true);
+    doubleSpinBoxS0->setEnabled(true);
+    doubleSpinBoxS2->setEnabled(true);
+    doubleSpinBoxU0->setEnabled(true);
+    doubleSpinBoxI0->setEnabled(true);
+    pushButtonStart->setEnabled(true);
+    pushButtonStop->setEnabled(false);
 }
 
 void Form::makeStep()
