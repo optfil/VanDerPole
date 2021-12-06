@@ -2,6 +2,8 @@
 #include <QLayout>
 
 #include <qwt_legend.h>
+#include <qwt_plot_panner.h>
+#include <qwt_plot_magnifier.h>
 
 Form::Form(QWidget *parent)
     : QWidget(parent), sys_(nullptr)
@@ -45,11 +47,21 @@ Form::Form(QWidget *parent)
     curveTI->setTitle("I");
     QwtLegend *legend = new QwtLegend;
     plotTime->insertLegend(legend, QwtPlot::BottomLegend);
+    QwtPlotPanner *pannerTime = new QwtPlotPanner(plotTime->canvas());
+    QwtPlotMagnifier *magnifierTime = new QwtPlotMagnifier(plotTime->canvas());
+    magnifierTime->setMouseButton(Qt::NoButton);
+    magnifierTime->setKeyFactor(1.0);
+    magnifierTime->setWheelFactor(1.1);
 
     plotPhase = new QwtPlot;
     curveUI = new QwtPlotCurve;
     curveUI->setPen(QColor("green"), 3.0);
     curveUI->attach(plotPhase);
+    QwtPlotPanner *pannerPhase = new QwtPlotPanner(plotPhase->canvas());
+    QwtPlotMagnifier *magnifierPhase = new QwtPlotMagnifier(plotPhase->canvas());
+    magnifierPhase->setMouseButton(Qt::NoButton);
+    magnifierPhase->setKeyFactor(1.0);
+    magnifierPhase->setWheelFactor(1.1);
 
     doubleSpinBoxL->setValue(1.0);
     doubleSpinBoxC->setValue(1.0);
